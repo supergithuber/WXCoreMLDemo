@@ -1,2 +1,3 @@
 ### WXCoreMLDemo
 
+![image](demoImage.gif)
