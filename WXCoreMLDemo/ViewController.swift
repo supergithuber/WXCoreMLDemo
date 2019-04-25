@@ -84,7 +84,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     private func progressImage(image: UIImage){
         self.informationTextView.text = ""
         self.appendTextToTextView(text: "识别中......")
-        
+        let startTime = CFAbsoluteTimeGetCurrent()
         let mobileNetModel = MobileNet.init()
         do {
             //生成coreMLModel
@@ -94,6 +94,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 if let error = error {
                     self?.appendTextToTextView(text: "识别失败:\(error)")
                 }else {
+                    self?.appendTextToTextView(text: "用时：\(CFAbsoluteTimeGetCurrent() - startTime)")
                     let results = request.results as! [VNClassificationObservation]
                     for result in results{
                         let confidence = result.confidence //float
